@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<Creche>
+  <Data>
+      <Nom>Ma crèche 1</Nom>
+      <Description>Lorem Ipsum dolor sit amet</Description>
+      <Email>contact@subskill.com</Email>
+      <image>image1.jpg</image>
+      <Horaires>
+            <dimanche></dimanche>
+            <jeudi>9:00 à 19:00</jeudi>
+            <lundi>9:00 à 19:00</lundi>
+            <mardi>9:00 à 19:00</mardi>
+            <mercredi>9:00 à 19:00</mercredi>
+            <samedi></samedi>
+            <vendredi>9:00 à 19:00</vendredi>
+      </Horaires>
+      <Address>
+           <Street>23 rue Henri Chevreau</Street>
+           <Zip>75020</Zip>
+           <City>Paris</City>
+           <Country>FRANCE</Country>
+      </Address>
+  </Data>
+  <Data>
+      <Nom>Ma crèche 2</Nom>
+      <Description>Lorem Ipsum dolor sit amet 2</Description>
+      <Email>contact@subskill.com</Email>
+      <image>image2.jpg</image>
+      <Horaires>
+            <dimanche></dimanche>
+            <jeudi>9:00 à 20:00</jeudi>
+            <lundi>9:00 à 20:00</lundi>
+            <mardi>9:00 à 20:00</mardi>
+            <mercredi>9:00 à 20:00</mercredi>
+            <samedi></samedi>
+            <vendredi>9:00 à 20:00</vendredi>
+      </Horaires>
+      <Address>
+           <Street>51 rue des Amendiers</Street>
+           <Zip>75020</Zip>
+           <City>Paris</City>
+           <Country>FRANCE</Country>
+      </Address>
+  </Data>
+  <Data>
+      <Nom>Ma crèche 3</Nom>
+      <Description>Lorem Ipsum dolor sit amet 3</Description>
+      <Email>contact@subskill.com</Email>
+      <image>image3.jpg</image>
+      <Horaires>
+            <dimanche></dimanche>
+            <jeudi>9:00 à 20:00</jeudi>
+            <lundi>9:00 à 20:00</lundi>
+            <mardi>9:00 à 20:00</mardi>
+            <mercredi>9:00 à 20:00</mercredi>
+            <samedi></samedi>
+            <vendredi>9:00 à 20:00</vendredi>
+      </Horaires>
+      <Address>
+           <Street>1 cité riverain</Street>
+           <Zip>75010</Zip>
+           <City>Paris</City>
+           <Country>FRANCE</Country>
+      </Address>
+  </Data>
+  <Data>
+      <Nom>Ma crèche 4</Nom>
+      <Description>Lorem Ipsum dolor sit amet 4</Description>
+      <Email>contact@subskill.com</Email>
+      <image>image4.jpg</image>
+      <Horaires>
+            <dimanche></dimanche>
+            <jeudi>9:00 à 20:00</jeudi>
+            <lundi>9:00 à 20:00</lundi>
+            <mardi>9:00 à 20:00</mardi>
+            <mercredi>9:00 à 20:00</mercredi>
+            <samedi></samedi>
+            <vendredi>9:00 à 20:00</vendredi>
+      </Horaires>
+      <Address>
+           <Street>8 rue Juliette Dodu</Street>
+           <Zip>75010</Zip>
+           <City>Paris</City>
+           <Country>FRANCE</Country>
+      </Address>
+  </Data>
+  <Data>
+      <Nom>Ma crèche 5</Nom>
+      <Description>Lorem Ipsum dolor sit amet 5</Description>
+      <Email>contact@subskill.com</Email>
+      <image>image5.jpg</image>
+      <Horaires>
+            <dimanche></dimanche>
+            <jeudi>9:00 à 20:00</jeudi>
+            <lundi>9:00 à 20:00</lundi>
+            <mardi>9:00 à 20:00</mardi>
+            <mercredi>9:00 à 20:00</mercredi>
+            <samedi></samedi>
+            <vendredi>9:00 à 20:00</vendredi>
+      </Horaires>
+      <Address>
+           <Street>1 place de la République</Street>
+           <Zip>75010</Zip>
+           <City>Paris</City>
+           <Country>FRANCE</Country>
+      </Address>
+  </Data>
+  <Data>
+      <Nom>Ma crèche 6</Nom>
+      <Description>Lorem Ipsum dolor sit amet 6</Description>
+      <Email>contact@subskill.com</Email>
+      <image>image6.jpg</image>
+      <Horaires>
+            <dimanche></dimanche>
+            <jeudi>9:00 à 20:00</jeudi>
+            <lundi>9:00 à 20:00</lundi>
+            <mardi>9:00 à 20:00</mardi>
+            <mercredi>9:00 à 20:00</mercredi>
+            <samedi></samedi>
+            <vendredi>9:00 à 20:00</vendredi>
+      </Horaires>
+      <Address>
+           <Street>235 rue de Tolbiac</Street>
+           <Zip>75013</Zip>
+           <City>Paris</City>
+           <Country>FRANCE</Country>
+      </Address>
+  </Data>
+</Creche>
