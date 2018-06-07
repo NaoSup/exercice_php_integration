@@ -1,0 +1,78 @@
+body {
+  color: #4A4A4A;
+  font-family: Helvetica;
+  letter-spacing: 0.1vw;
+}
+/* HEADER */
+#header {
+  padding-bottom: 2vh;
+  border-bottom: 5px solid #2173BA;
+  text-align: center;
+}
+.logo {
+  padding-top: 2vh;
+  text-align: center;
+}
+.centeredVert {
+  height: 7vh;
+  line-height: 7vh;
+}
+.centeredVert p, .centeredVert ul, #email svg, #profil svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+.highlighted {
+  background-color: #C2185B;
+}
+.highlighted span {
+  color: #0178C2;
+}
+#bar1 div{
+  height: 7vh;
+}
+#number {
+  display: inline;
+  background-color: #F6F6F6;
+  text-align: right;
+}
+#number p {
+  display: inline-block;
+}
+#email {
+  background-color: #2173BA;
+}
+#profil {
+  background-color: #308DDE;
+}
+#bar2 div{
+  margin-top: 3vh;
+}
+#parent {
+  border-top-right-radius: 55px;
+  border-bottom-right-radius: 55px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-size: 1.3em;
+}
+#plus {
+  margin-left: 1vw;
+}
+#nav {
+  text-align: left;
+}
+#nav ul {
+  list-style: none;
+}
+#nav ul li {
+  display: inline-block;
+  text-transform: uppercase;
+  margin-right: 1vw;
+}
+#nav ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+#nav ul li a:hover {
+  text-decoration: none;
+  color: #0178C2;
+}
