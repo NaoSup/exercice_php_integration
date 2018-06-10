@@ -84,7 +84,67 @@ body {
   text-decoration: none;
   color: #0178C2;
 }
-
+/*MAIN*/
+h1 {
+  color: #0178C2;
+}
+.card {
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  margin: 2vh 1vw;
+  padding: 0;
+  position: relative;
+}
+.card-image, .card-desc {
+  width: 100%;
+}
+.card-image {
+  height: 18vh;
+  background: #2173BA;
+  background-repeat: no-repeat;
+  border-radius: 8px 8px 0 0;
+  padding: 0;
+}
+#check {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: 1px solid #0178C2;
+  position: absolute;
+  left: 80%;
+  top: 37%;
+  z-index: 1;
+}
+.check-selected {
+  background-image: url("../images/check.png");
+  background-size: contain;
+}
+.card-desc {
+  border-top: 5px solid #0178C2;
+  text-align: left;
+  line-height: initial;
+  padding: 2vh 1vw;
+}
+.card-desc #multiaccueil, .card-desc #address {
+  color: #0178C2;
+}
+.card-desc #multiaccueil {
+  font-size: 0.7em;
+  margin-bottom: 0.5vh;
+}
+.card-desc #name {
+  font-size: 1.2em;
+  padding-bottom: 4vh;
+}
+.card-desc #hours {
+  padding-top: 1vh;
+  border-top: 1px solid #E5E5E5;
+  font-size: 0.9em;
+}
+.card-desc-selected {
+  background-color: #CDDDED;
+}
 /* FOOTER */
 #contact {
   background-color: #F6F6F6;
