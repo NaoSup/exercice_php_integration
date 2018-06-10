@@ -2,20 +2,27 @@ body {
   color: #4A4A4A;
   font-family: Helvetica;
   letter-spacing: 0.1vw;
+  text-align: center;
+}
+.caps {
+  text-transform: uppercase;
+}
+.centeredVert {
+  height: 7vh;
+  line-height: 7vh;
 }
 /* HEADER */
 #header {
   padding-bottom: 2vh;
   border-bottom: 5px solid #2173BA;
-  text-align: center;
 }
-.logo {
+#logo {
   padding-top: 2vh;
   text-align: center;
 }
-.centeredVert {
-  height: 7vh;
-  line-height: 7vh;
+#logo img {
+  width: 10vw;
+  height: auto;
 }
 .centeredVert p, .centeredVert ul, #email svg, #profil svg {
   display: inline-block;
@@ -35,6 +42,9 @@ body {
   background-color: #F6F6F6;
   text-align: right;
 }
+#number img {
+  vertical-align: inherit;
+}
 #number p {
   display: inline-block;
 }
@@ -50,29 +60,77 @@ body {
 #parent {
   border-top-right-radius: 55px;
   border-bottom-right-radius: 55px;
-  text-transform: uppercase;
   color: #FFFFFF;
   font-size: 1.3em;
 }
-#plus {
-  margin-left: 1vw;
+#parent img {
+  vertical-align: sub;
 }
 #nav {
   text-align: left;
 }
-#nav ul {
+#nav ul, .lists ul {
   list-style: none;
 }
-#nav ul li {
+#nav ul li{
   display: inline-block;
-  text-transform: uppercase;
   margin-right: 1vw;
 }
-#nav ul li a {
+#nav ul li a, .lists ul li a {
   text-decoration: none;
   color: inherit;
 }
-#nav ul li a:hover {
+#nav ul li a:hover, .lists ul li a:hover {
   text-decoration: none;
   color: #0178C2;
+}
+
+/* FOOTER */
+#contact {
+  background-color: #F6F6F6;
+  color: #0178C2;
+  text-align: left;
+  padding: 4vh 0 1vh;
+}
+#horaires p span {
+  font-size: 0.8em;
+}
+#email2 {
+  padding-top: 1vh;
+  text-align: center;
+}
+#email2 img {
+  width: 2vw;
+  height: auto;
+  margin-right: 1vw;
+}
+#reseaux {
+  text-align: right;
+  font-size: 0.9em;
+}
+#reseaux img {
+  width: 2vw;
+  height: auto;
+  margin-left: 0.6vw;
+}
+#links {
+  padding-top: 5vh;
+}
+#copyright img {
+  width: 6vw;
+  height: auto;
+  margin-bottom: 1vh;
+}
+#copyright p {
+  font-size: 0.8em;
+  line-height: initial;
+  text-align: left;
+  color: #0178C2;
+}
+.lists{
+  text-align: left;
+  line-height: 3vh;
+}
+.lists .caps {
+  padding-bottom: 1vh;
 }

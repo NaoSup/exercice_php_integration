@@ -22,11 +22,7 @@ if(file_exists("flux.xml"))
   {
     // On vérifie si la crèche est déjà enregistrée
     $result = getCreche($obj->Nom);
-    if(count($result) > 0)
-    {
-        echo "Cette crèche est déjà enregistrée. <br>";
-    } 
-    else 
+    if(count($result) == 0)
     {
       // Ajout des données dans la table Creche
       $request_creche = $db->prepare("INSERT INTO Creche (name, description, email, image) VALUES (:name, :description, :email, :image)");
@@ -36,8 +32,6 @@ if(file_exists("flux.xml"))
         ':email' => $obj->Email,
         ':image' => $obj->image
       ]);
-      echo "<br> Crèche ajoutée.";
-
       //On récupère l'id de la creche qui vient d'etre créée
       $result = getCreche($obj->Nom);
       $id = $result[0]["id_creche"];
