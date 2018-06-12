@@ -113,7 +113,7 @@ h1 {
   border: 1px solid #0178C2;
   position: absolute;
   left: 80%;
-  top: 37%;
+  top: 16vh;
   z-index: 1;
 }
 .check-selected {
@@ -144,6 +144,37 @@ h1 {
 }
 .card-desc-selected {
   background-color: #CDDDED;
+}
+/* MAP */
+#map {
+  height: 500px;
+  width: 100%;
+  margin-top: 2vh;
+}
+.info-window {
+  padding: 2vh 2vw;
+  text-align: left;
+}
+.info-window p, #nurseries-selected {
+  color: #0178C2;
+}
+#nurseries-selected {
+  padding: 4vh 3vw;
+  border: 1px solid #E5E5E5;
+}
+#nurseries-selected p, #nurseries-selected button {
+  display: inline-block;
+}
+#nurseries-selected button { 
+  background-color: #0178C2;
+  color: #FFFFFF;
+  padding: 1vh 2vw;
+  margin-left: 2vw;
+  border-radius: 15px;
+  border: none;
+}
+.hidden { 
+  display: none;
 }
 /* FOOTER */
 #contact {

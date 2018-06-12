@@ -1,6 +1,9 @@
 <?php
 include("includes/init.php");
 require("getXML.php");
+$addresses = [];
+$request = $db->query("SELECT * FROM Creche");
+$creches = $request->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -60,21 +63,21 @@ require("getXML.php");
   </div>
   <div class="row" id="main">
     <div class="col-md-8 col-md-offset-2">
-      <h1>12 crèches trouvées à proximité de <br> « 23 rue Henri Chevreau, Boulogne »</h1>
+      <h1><?php echo count($creches); ?> crèches trouvées</h1>
     </div>
   </div>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
       <div class="row">
         <?php
-          $request = $db->query("SELECT * FROM Creche");
-          $creches = $request->fetchAll();
           foreach($creches as $creche){
             $id_creche = $creche['id_creche'];
             $request = $db->query("SELECT * FROM Address WHERE id_creche = $id_creche");
             $result = $request->fetch();
             if(!empty($result)) {
               $address = $result['street'] . ", " . $result['zip'] . " " . $result['city'];
+              $tab = [$id_creche, $address, $creche['name']];
+              array_push($addresses, $tab);
             }
             $request = $db->query("SELECT * FROM Hours WHERE id_creche = $id_creche");
             $result = $request->fetch();
@@ -87,16 +90,23 @@ require("getXML.php");
             <div id="check"></div>
             <div class="col-md-12 card-desc">
               <p id="multiaccueil">Multi-Accueil</p>
-              <p id="address"><?php echo $address ?></p>
+              <span id="address"><?php echo $address ?></span>
               <p id="name"><?php echo $creche['name'] ?></p>
               <p id="hours"><?php echo $hours ?></p>
             </div>
           </div>
           <?php
-        }
-      ?>
+          }
+        ?>
       </div>
-    <div class="col-md-5"></div>
+    </div>
+    <div class="col-md-5">
+      <div class="col-md-12" id="map"></div>
+      <div class="col-md-12 hidden" id="nurseries-selected">
+        <p>Vous avez sélectionné <span></span></p>
+        <button>Je fais une demande</button>
+      </div>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -181,14 +191,154 @@ require("getXML.php");
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script>
+    var total = 0;
+
     $("body").click((e) => {
       var target = $(e.target);
-      if(target.is("#check")){
+      
+      if (target.is("#check")) {
+
+        if (target.hasClass("check-selected")) {
+          
+          total -= 1;
+
+        } else {
+
+          total += 1;
+
+        }
+
         target.toggleClass("check-selected");
         target.next(".card-desc").toggleClass("card-desc-selected");
+        
+        if (total > 0) {
+
+          var text = "";
+          $("#nurseries-selected").removeClass("hidden");
+          
+          if (total == 1) {
+
+            text = total + " crèche";
+
+          } else {
+
+            text = total + " crèches";
+
+          }
+
+          $("#nurseries-selected").children().find("span").text(text);
+          
+        } else {
+
+          $("#nurseries-selected").addClass("hidden");
+
+        }
       }
-      
     });
   </script>
+  
+  <script>
+      $(function () {
+        //Initialisation of the GMap
+        function initMap() {
+          
+          var location = new google.maps.LatLng(48.861716, 2.337014);
+          
+          var mapCanvas = document.getElementById('map');
+          
+          var mapOptions = {
+            center: location,
+            zoom: 12,
+            panControl: false,
+             mapTypeId: google.maps.MapTypeId.ROADMAP
+          }
+          
+          var map = new google.maps.Map(mapCanvas, mapOptions);
+
+          var addresses = <?php echo json_encode($addresses); ?>;
+          
+          var messages = [];
+          
+          var marker;
+
+          var infowindow = new google.maps.InfoWindow();
+          
+          var geocoder = new google.maps.Geocoder();
+          
+          // Get the coordinates of each address
+          function geocodeAddress(address) {
+
+            return new Promise(function(resolve, reject) {
+
+              geocoder.geocode({'address': address}, (results, status) => {
+
+                if (status === 'OK') {
+
+                  resolve([results[0].geometry.location.lat(), results[0].geometry.location.lng()]);
+                
+                } else {
+
+                  reject(new Error("Couldn't find location for " + address));
+
+                }
+              });
+            });
+          }
+          
+          // Get the list of the coordinates in an array
+          function getListCoordinates() {
+
+            var coordinates = [];
+
+            for(var i = 0; i < addresses.length; i++){
+
+              coordinates.push(geocodeAddress(addresses[i][1]));
+
+            }
+
+            return coordinates;
+
+          }
+
+           var locations = getListCoordinates();
+           
+           // Wait for the list and then create the markers on the map
+           Promise.all(locations)
+            .then(function(results){
+
+              for (var i = 0; i < addresses.length; i++) {
+
+                marker = new google.maps.Marker({
+                  position: new google.maps.LatLng(results[i][0],results[i][1]),
+                  map: map,
+                  id: i
+                });
+
+                messages[i] = '<div class="info-window">' +
+                '<p>' + addresses[i][1] + '</p>' +
+                '<h4>' + addresses[i][2] + '</h4>' +
+                '</div>';
+                
+                console.log(messages[i]);
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+
+                  return function() {
+
+                    infowindow.setContent(messages[i]);
+                    
+                    infowindow.open(map, marker);
+
+                  }
+                })(marker, i));
+              }
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initMap);
+      });
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ">
+    </script>
 </body>
 </html>
