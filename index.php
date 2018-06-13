@@ -194,7 +194,7 @@ $creches = $request->fetchAll();
     var total = 0;
 
     $("body").click((e) => {
-      var target = $(e.target);
+      let target = $(e.target);
       
       if (target.is("#check")) {
 
@@ -213,16 +213,16 @@ $creches = $request->fetchAll();
         
         if (total > 0) {
 
-          var text = "";
+          let text = "";
           $("#nurseries-selected").removeClass("hidden");
           
           if (total == 1) {
 
-            text = total + " crèche";
+            text = `${total} crèche`;
 
           } else {
 
-            text = total + " crèches";
+            text = `${total} crèches`;
 
           }
 
@@ -236,39 +236,39 @@ $creches = $request->fetchAll();
       }
     });
   </script>
-  
+
   <script>
-      $(function () {
+      $(() => {
         //Initialisation of the GMap
         function initMap() {
           
-          var location = new google.maps.LatLng(48.861716, 2.337014);
+          const location = new google.maps.LatLng(48.861716, 2.337014);
           
-          var mapCanvas = document.getElementById('map');
+          const mapCanvas = document.getElementById('map');
           
-          var mapOptions = {
+          const mapOptions = {
             center: location,
             zoom: 12,
             panControl: false,
              mapTypeId: google.maps.MapTypeId.ROADMAP
           }
           
-          var map = new google.maps.Map(mapCanvas, mapOptions);
+          const map = new google.maps.Map(mapCanvas, mapOptions);
 
-          var addresses = <?php echo json_encode($addresses); ?>;
+          const addresses = <?php echo json_encode($addresses); ?>;
           
-          var messages = [];
+          const geocoder = new google.maps.Geocoder();
           
-          var marker;
+          let messages = [];
+          
+          let marker;
 
-          var infowindow = new google.maps.InfoWindow();
-          
-          var geocoder = new google.maps.Geocoder();
+          let infowindow = new google.maps.InfoWindow();
           
           // Get the coordinates of each address
           function geocodeAddress(address) {
 
-            return new Promise(function(resolve, reject) {
+            return new Promise((resolve, reject) => {
 
               geocoder.geocode({'address': address}, (results, status) => {
 
@@ -278,7 +278,7 @@ $creches = $request->fetchAll();
                 
                 } else {
 
-                  reject(new Error("Couldn't find location for " + address));
+                  reject(new Error(`Couldn't find location for ${address}`));
 
                 }
               });
@@ -287,26 +287,24 @@ $creches = $request->fetchAll();
           
           // Get the list of the coordinates in an array
           function getListCoordinates() {
+            let coordinates = [];
 
-            var coordinates = [];
+            for(let address of addresses){
 
-            for(var i = 0; i < addresses.length; i++){
-
-              coordinates.push(geocodeAddress(addresses[i][1]));
+              coordinates.push(geocodeAddress(address[1]));
 
             }
-
             return coordinates;
-
+            
           }
 
-           var locations = getListCoordinates();
+           let locations = getListCoordinates();
            
            // Wait for the list and then create the markers on the map
            Promise.all(locations)
-            .then(function(results){
+            .then((results) => {
 
-              for (var i = 0; i < addresses.length; i++) {
+              for (let i = 0; i < addresses.length; i++) {
 
                 marker = new google.maps.Marker({
                   position: new google.maps.LatLng(results[i][0],results[i][1]),
@@ -314,14 +312,12 @@ $creches = $request->fetchAll();
                   id: i
                 });
 
-                messages[i] = '<div class="info-window">' +
-                '<p>' + addresses[i][1] + '</p>' +
-                '<h4>' + addresses[i][2] + '</h4>' +
-                '</div>';
+                messages[i] = `<div class="info-window">
+                <p>  ${addresses[i][1]} </p>
+                <h4> ${addresses[i][2]} </h4>
+                </div>`;
                 
-                console.log(messages[i]);
-
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                google.maps.event.addListener(marker, 'click', ((marker, i) => {
 
                   return function() {
 
