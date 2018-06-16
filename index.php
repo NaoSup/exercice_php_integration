@@ -1,11 +1,16 @@
 <?php
 include("includes/init.php");
 require("getXML.php");
+
+$type = $_GET['type'];
+
 $addresses = [];
-$address = "";
-$hours = "";
+
 $request = $db->query("SELECT * FROM Nursery");
+
 $nurseries = $request->fetchAll();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -17,7 +22,6 @@ $nurseries = $request->fetchAll();
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <link rel="stylesheet" href="css/main.css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
   <div class="row" id="header">
@@ -27,7 +31,7 @@ $nurseries = $request->fetchAll();
     <div class="col-md-10">
       <div class="row" id="bar1">
         <div class="col-md-4 highlighted centeredVert">
-          <p class="">Un réseau de <span>1300</span> crèches</p>
+          <p class="">Un réseau de <span id="highlighted-number">1300</span> crèches</p>
         </div>
         <div class="col-md-6 centeredVert" id="number">
           <img src="images/phone.png" alt="phone" width="20vw" height="auto">
@@ -73,19 +77,31 @@ $nurseries = $request->fetchAll();
       <div class="row">
         <?php
           foreach($nurseries as $nursery){
+            
             $id_nursery = $nursery['id_nursery'];
             
             $req = $db->query("SELECT * FROM Address WHERE id_nursery = $id_nursery");
+            
             $result = $req->fetch();
+            
             if(!empty($result)) {
+            
               $address = $result['street'] . ", " . $result['zip'] . " " . $result['city'];
+            
               $tab = [$id_nursery, $address, $nursery['name']];
+            
               array_push($addresses, $tab);
+            
             }
+            
             $request = $db->query("SELECT * FROM Hours WHERE id_nursery = $id_nursery");
+            
             $result = $request->fetch();
+            
             if(!empty($result)) {
+            
               $hours = "Du lundi au vendredi de " . $result['monday'] . ".";
+            
             }
           ?>
           <div class="col-md-5 card">
@@ -192,7 +208,21 @@ $nurseries = $request->fetchAll();
       </ul>
     </div>
   </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
+  <script>
+    let type = <?php echo $type ?>;
+    
+    if (type === 1) {
+
+      $(".highlighted").css({"background-color": "#0178C2", "color": "#FFFFFF"});
+      $("#highlighted-number").css("color", "#C2185B");
+
+    }
+  </script>
+  
   <script>
     var total = 0;
 

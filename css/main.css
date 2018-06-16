@@ -31,7 +31,7 @@ body {
 .highlighted {
   background-color: #C2185B;
 }
-.highlighted span {
+.highlighted #highlighted-number {
   color: #0178C2;
 }
 #bar1 div{
