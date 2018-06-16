@@ -93,17 +93,17 @@ ALTER TABLE `Nursery`
 -- AUTO_INCREMENT pour la table `Address`
 --
 ALTER TABLE `Address`
-  MODIFY `id_address` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_address` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `Hours`
 --
 ALTER TABLE `Hours`
-  MODIFY `id_hour` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_hour` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `Nursery`
 --
 ALTER TABLE `Nursery`
-  MODIFY `id_nursery` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id_nursery` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Contraintes pour les tables d‚charg‚es
 --

@@ -2,6 +2,8 @@
 include("includes/init.php");
 require("getXML.php");
 $addresses = [];
+$address = "";
+$hours = "";
 $request = $db->query("SELECT * FROM Nursery");
 $nurseries = $request->fetchAll();
 ?>
@@ -71,15 +73,16 @@ $nurseries = $request->fetchAll();
       <div class="row">
         <?php
           foreach($nurseries as $nursery){
-            $id_nursery = $creche['id_creche'];
-            $request = $db->query("SELECT * FROM Address WHERE id_nursery = $id_nursery");
-            $result = $request->fetch();
+            $id_nursery = $nursery['id_nursery'];
+            
+            $req = $db->query("SELECT * FROM Address WHERE id_nursery = $id_nursery");
+            $result = $req->fetch();
             if(!empty($result)) {
               $address = $result['street'] . ", " . $result['zip'] . " " . $result['city'];
-              $tab = [$id_nursery, $address, $creche['name']];
+              $tab = [$id_nursery, $address, $nursery['name']];
               array_push($addresses, $tab);
             }
-            $request = $db->query("SELECT * FROM Hours WHERE id_creche = $id_nursery");
+            $request = $db->query("SELECT * FROM Hours WHERE id_nursery = $id_nursery");
             $result = $request->fetch();
             if(!empty($result)) {
               $hours = "Du lundi au vendredi de " . $result['monday'] . ".";
