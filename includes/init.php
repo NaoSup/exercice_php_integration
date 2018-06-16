@@ -1,5 +1,5 @@
 <?php
-$dsn = 'mysql:dbname=subskill_exo;host=localhost';
+$dsn = 'mysql:dbname=nurseries;host=localhost';
 $user = 'root';
 $password = 'root';
 try {

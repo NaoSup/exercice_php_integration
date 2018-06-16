@@ -1,0 +1,122 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.3
+-- https://www.phpmyadmin.net/
+--
+-- H“te : localhost
+-- G‚n‚r‚ le :  mer. 13 juin 2018 … 12:03
+-- Version du serveur :  5.6.35
+-- Version de PHP :  7.1.8
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Base de donn‚es :  `nurseries`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Address`
+--
+
+CREATE TABLE `Address` (
+  `id_address` int(11) NOT NULL,
+  `street` varchar(255) NOT NULL,
+  `zip` int(5) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `country` varchar(100) NOT NULL,
+  `id_nursery` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Hours`
+--
+
+CREATE TABLE `Hours` (
+  `id_hour` int(11) NOT NULL,
+  `sunday` varchar(100) NOT NULL,
+  `monday` varchar(100) NOT NULL,
+  `tuesday` varchar(100) NOT NULL,
+  `wednesday` varchar(100) NOT NULL,
+  `thursday` varchar(100) NOT NULL,
+  `friday` varchar(100) NOT NULL,
+  `saturday` varchar(100) NOT NULL,
+  `id_nursery` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Nursery`
+--
+
+CREATE TABLE `Nursery` (
+  `id_nursery` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Index pour les tables d‚charg‚es
+--
+
+--
+-- Index pour la table `Address`
+--
+ALTER TABLE `Address`
+  ADD PRIMARY KEY (`id_address`),
+  ADD KEY `fk_address` (`id_nursery`) USING BTREE;
+
+--
+-- Index pour la table `Hours`
+--
+ALTER TABLE `Hours`
+  ADD PRIMARY KEY (`id_hour`),
+  ADD KEY `fk_hour` (`id_nursery`) USING BTREE;
+
+--
+-- Index pour la table `Nursery`
+--
+ALTER TABLE `Nursery`
+  ADD PRIMARY KEY (`id_nursery`);
+
+--
+-- AUTO_INCREMENT pour les tables d‚charg‚es
+--
+
+--
+-- AUTO_INCREMENT pour la table `Address`
+--
+ALTER TABLE `Address`
+  MODIFY `id_address` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT pour la table `Hours`
+--
+ALTER TABLE `Hours`
+  MODIFY `id_hour` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+--
+-- AUTO_INCREMENT pour la table `Nursery`
+--
+ALTER TABLE `Nursery`
+  MODIFY `id_nursery` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+--
+-- Contraintes pour les tables d‚charg‚es
+--
+
+--
+-- Contraintes pour la table `Address`
+--
+ALTER TABLE `Address`
+  ADD CONSTRAINT `fk_address` FOREIGN KEY (`id_nursery`) REFERENCES `nursery` (`id_nursery`);
+
+--
+-- Contraintes pour la table `Hours`
+--
+ALTER TABLE `Hours`
+  ADD CONSTRAINT `fk_hour` FOREIGN KEY (`id_nursery`) REFERENCES `nursery` (`id_nursery`);
+

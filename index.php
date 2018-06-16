@@ -2,8 +2,8 @@
 include("includes/init.php");
 require("getXML.php");
 $addresses = [];
-$request = $db->query("SELECT * FROM Creche");
-$creches = $request->fetchAll();
+$request = $db->query("SELECT * FROM Nursery");
+$nurseries = $request->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -63,35 +63,35 @@ $creches = $request->fetchAll();
   </div>
   <div class="row" id="main">
     <div class="col-md-8 col-md-offset-2">
-      <h1><?php echo count($creches); ?> crèches trouvées</h1>
+      <h1><?php echo count($nurseries); ?> crèches trouvées</h1>
     </div>
   </div>
   <div class="row">
     <div class="col-md-5 col-md-offset-1">
       <div class="row">
         <?php
-          foreach($creches as $creche){
-            $id_creche = $creche['id_creche'];
-            $request = $db->query("SELECT * FROM Address WHERE id_creche = $id_creche");
+          foreach($nurseries as $nursery){
+            $id_nursery = $creche['id_creche'];
+            $request = $db->query("SELECT * FROM Address WHERE id_nursery = $id_nursery");
             $result = $request->fetch();
             if(!empty($result)) {
               $address = $result['street'] . ", " . $result['zip'] . " " . $result['city'];
-              $tab = [$id_creche, $address, $creche['name']];
+              $tab = [$id_nursery, $address, $creche['name']];
               array_push($addresses, $tab);
             }
-            $request = $db->query("SELECT * FROM Hours WHERE id_creche = $id_creche");
+            $request = $db->query("SELECT * FROM Hours WHERE id_creche = $id_nursery");
             $result = $request->fetch();
             if(!empty($result)) {
               $hours = "Du lundi au vendredi de " . $result['monday'] . ".";
             }
           ?>
           <div class="col-md-5 card">
-            <div class=" col-md-12 card-image" style="background-image: url(./images/<?php echo $creche['image']?>)"></div>
+            <div class=" col-md-12 card-image" style="background-image: url(./images/<?php echo $nursery['image']?>)"></div>
             <div id="check"></div>
             <div class="col-md-12 card-desc">
               <p id="multiaccueil">Multi-Accueil</p>
               <span id="address"><?php echo $address ?></span>
-              <p id="name"><?php echo $creche['name'] ?></p>
+              <p id="name"><?php echo $nursery['name'] ?></p>
               <p id="hours"><?php echo $hours ?></p>
             </div>
           </div>
