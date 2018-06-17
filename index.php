@@ -2,7 +2,9 @@
 include("includes/init.php");
 require("getXML.php");
 
-$type = $_GET['type'];
+if(isset($_GET['type'])) {
+  $type = $_GET['type'];
+}
 
 $addresses = [];
 
@@ -25,31 +27,31 @@ $nurseries = $request->fetchAll();
 </head>
 <body>
   <div class="row" id="header">
-    <div class="col-md-2" id="logo">
+    <div class="hidden-xs col-sm-3 col-md-2" id="logo">
       <img src="images/logo.png" alt="logo">
     </div>
-    <div class="col-md-10">
+    <div class="col-xs-12 col-sm-9 col-md-10">
       <div class="row" id="bar1">
-        <div class="col-md-4 highlighted centeredVert">
+        <div class="hidden-xs hidden-sm col-md-4 highlighted centeredVert">
           <p class="">Un réseau de <span id="highlighted-number">1300</span> crèches</p>
         </div>
-        <div class="col-md-6 centeredVert" id="number">
+        <div class="col-xs-8 col-sm-8 col-md-6 centeredVert" id="number">
           <img src="images/phone.png" alt="phone" width="20vw" height="auto">
           <p>01 85 53 06 93</p>
         </div>
-        <div class="col-md-1 centeredVert" id="email">
+        <div class="col-xs-2 col-sm-2 col-md-1 centeredVert" id="email">
           <img src="images/enveloppe.png" alt="enveloppe" width="30vw" height="auto">
         </div>
-        <div class="col-md-1 centeredVert" id="profil">
+        <div class="col-xs-2 col-sm-2 col-md-1 centeredVert" id="profil">
           <img src="images/user.png" alt="user" width="20vw" height="auto">
         </div>
       </div>
       <div class="row" id="bar2">
-        <div class="col-md-3 highlighted centeredVert caps" id="parent">
+        <div class="hidden-xs hidden-sm col-md-3 highlighted centeredVert caps" id="parent">
           <p>Je suis un parent</p>
           <img src="images/plus.png" alt="plus" width="25vw" height="auto">
         </div>
-        <div class="col-md-9 centeredVert caps" id="nav">
+        <div class="col-sm-12 col-md-9 centeredVert caps" id="nav">
           <ul>
             <li> 
               <a href="">Connaître la maison bleue</a> 
@@ -73,7 +75,7 @@ $nurseries = $request->fetchAll();
     </div>
   </div>
   <div class="row">
-    <div class="col-md-5 col-md-offset-1">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-5 col-md-offset-1">
       <div class="row">
         <?php
           foreach($nurseries as $nursery){
@@ -104,7 +106,7 @@ $nurseries = $request->fetchAll();
             
             }
           ?>
-          <div class="col-md-5 card">
+          <div class="col-xs-12 col-sm-5 col-md-5 card">
             <div class=" col-md-12 card-image" style="background-image: url(./images/<?php echo $nursery['image']?>)"></div>
             <div id="check"></div>
             <div class="col-md-12 card-desc">
@@ -133,7 +135,7 @@ $nurseries = $request->fetchAll();
     </div>
   </div>
   <div class="row" id="contact">
-    <div class="col-md-3 col-md-offset-2" id="horaires">
+    <div class="col-xs-12 col-sm-6 col-md-3 col-md-offset-2" id="horaires">
       <p>
         <img src="images/phone.png" alt="phone" width="20vw" height="auto">
         01 85 53 06 93 
@@ -141,13 +143,13 @@ $nurseries = $request->fetchAll();
         <span>Du lundi au vendredi de 8h à 20h et le samedi de 9h à 15h</span>
       </p>
     </div>
-    <div class="col-md-2" id="email2">
+    <div class="col-xs-12 col-sm-3 col-md-2" id="email2">
       <p>
         <img src="images/enveloppe2.png" alt="enveloppe">
         Je préfère les mails
       </p>
     </div>
-    <div class="col-md-3" id="reseaux">
+    <div class="col-xs-12 col-sm-3 col-md-3" id="reseaux">
       <p>Retrouvez-nous aussi sur</p>
       <a href="">
         <img src="images/twitter.png" alt="">
@@ -166,8 +168,8 @@ $nurseries = $request->fetchAll();
       </a>
     </div>
   </div>
-  <div class="row" id="links">
-    <div class="col-md-1 col-md-offset-2" id="copyright">
+  <div class="row hidden-xs hidden-sm" id="links">
+    <div class="col-xs-12 col-sm-12 col-md-1 col-md-offset-2" id="copyright">
       <img src="images/logo.png" alt="logo">
       <p>
         © Copyright 2018

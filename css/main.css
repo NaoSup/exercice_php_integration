@@ -1,3 +1,7 @@
+
+html{
+  font-size: 62.5%;
+}
 body {
   color: #4A4A4A;
   font-family: Helvetica;
@@ -61,7 +65,7 @@ body {
   border-top-right-radius: 55px;
   border-bottom-right-radius: 55px;
   color: #FFFFFF;
-  font-size: 1.3em;
+  font-size: 1.4em;
 }
 #parent img {
   vertical-align: sub;
@@ -72,7 +76,7 @@ body {
 #nav ul, .lists ul {
   list-style: none;
 }
-#nav ul li{
+#nav ul li {
   display: inline-block;
   margin-right: 1vw;
 }
@@ -91,7 +95,7 @@ h1 {
 .card {
   border: 1px solid #E5E5E5;
   border-radius: 8px;
-  margin: 2vh 1vw;
+  margin: 2vh 1vw 2vh 0;
   padding: 0;
   position: relative;
 }
@@ -101,6 +105,7 @@ h1 {
 .card-image {
   height: 18vh;
   background: #2173BA;
+  background-size: cover;
   background-repeat: no-repeat;
   border-radius: 8px 8px 0 0;
   padding: 0;
